@@ -26,8 +26,11 @@ def getFilenames(inOrOut, interfaceid, algorithm):
 
 def main():
 
+    if len(sys.argv) != 4:
+        quit()
+
     inOrOut = sys.argv[1]#options: "in", "out"
-    interfaceid = int(sys.argv[2])#options: whatever is in your orion database for interfaceids
+    interfaceid = int(sys.argv[2])#option: whatever is in your orion database for interfaceids
     algorithm = sys.argv[3]#options: cnn3, cnn24, lstm, lstmcnn
 
     filename, weight_file = getFilenames(inOrOut, interfaceid, algorithm)

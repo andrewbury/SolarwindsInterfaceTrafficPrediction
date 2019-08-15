@@ -34,9 +34,9 @@ def main():
         quit()
 
     inOrOut = sys.argv[1]#options: "in", "out"
-    interfaceid = int(sys.argv[2])#options: whatever is in your orion database for interfaceids
+    interfaceid = int(sys.argv[2])#option: whatever is in your orion database for interfaceids
     algorithm = sys.argv[3]#options: cnn3, cnn24, lstm, lstmcnn
-    length_series = int(sys.argv[4])#options: integer(above 400 in length)
+    length_series = int(sys.argv[4])#option: integer(above 400 in length)
 
 
     ins, insTrains, outs, outsTrains = orionconnection.getInterface(length_series, interfaceid)
