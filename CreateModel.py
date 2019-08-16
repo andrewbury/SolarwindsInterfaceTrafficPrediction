@@ -10,7 +10,6 @@ from numpy import array
 """
 Creates a unique identifier via parameters given through command line and time of year/month
 """
-
 def createFilenames(inOrOut, interfaceid, algorithm):
     dt = datetime.datetime.today()
     filename = ""

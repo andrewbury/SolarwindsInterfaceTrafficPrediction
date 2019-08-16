@@ -50,7 +50,7 @@ def main():
         while True:
             window = [i for i in input().split()]
             predictions = forecaster.predict_next(model, window, len(window))
-            print("prediction= " + str(predictions[0][0]))
+            print(predictions[0][0])
     else:
         while True:
             smooth = getSmoothedInput()#np.log(smoothed_window)

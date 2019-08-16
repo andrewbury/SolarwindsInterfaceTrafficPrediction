@@ -7,7 +7,7 @@ from keras.layers.convolutional import MaxPooling1D, Conv1D
 from keras.models import Sequential
 from numpy import array
 
-def getModelCNNWindow3(sequence, window_size=3, n_features=1,epochs=100):
+def getModelCNNWindow3(sequence, window_size=3, n_features=1,epochs=30):
     model = Sequential()
     model.add(Conv1D(filters=24, kernel_size=2, activation='relu', input_shape=(window_size, n_features)))
     model.add(MaxPooling1D(pool_size=2))
