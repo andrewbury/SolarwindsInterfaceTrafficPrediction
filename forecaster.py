@@ -6,7 +6,7 @@ from keras.layers.convolutional import MaxPooling1D, Conv1D
 from keras.models import Sequential
 from numpy import array
 
-def getModelCNNWindow3(sequence, window_size=3, n_features=1,epochs=30):
+def getModelCNNWindow3(sequence, window_size=3, n_features=1,epochs=100):
     model = Sequential()
     model.add(Conv1D(filters=24, kernel_size=2, activation='relu', input_shape=(window_size, n_features)))
     model.add(MaxPooling1D(pool_size=2))
@@ -25,7 +25,7 @@ def getModelCNNWindow3(sequence, window_size=3, n_features=1,epochs=30):
     return model
 
 
-def getModelCNNWindow24(sequence, window_size=int(24), activation='relu', n_features=1, epochs=30 ):
+def getModelCNNWindow24(sequence, window_size=int(24), activation='relu', n_features=1, epochs=100 ):
     
     kernel_size = [2,2]
     filters = [6,6]
@@ -74,7 +74,7 @@ def getModelCNNLSTM(sequence, window_size=3, n_features=1, epochs=30):
 
     return model
 
-def getModelLSTM(sequence, window_size=3, n_features=1, epochs=30):
+def getModelLSTM(sequence, window_size=3, n_features=1, epochs=100):
     model = Sequential()
     model.add(LSTM(units=10,activation='tanh', recurrent_activation='hard_sigmoid', use_bias=True, kernel_initializer='glorot_uniform'))
     

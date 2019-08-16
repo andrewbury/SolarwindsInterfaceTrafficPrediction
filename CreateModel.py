@@ -5,6 +5,11 @@ from numpy import array
 import rollingwindow
 import datetime
 
+
+"""
+Creates a unique identifier via parameters given through command line and time of year/month
+"""
+
 def createFilenames(inOrOut, interfaceid, algorithm):
     dt = datetime.datetime.today()
     filename = ""
@@ -26,18 +31,22 @@ def createFilenames(inOrOut, interfaceid, algorithm):
     return filename, weight_file
 
 
-
+"""
+Parameters: <direction> "in","out" (Tells what direction on the interface to analyze)      
+    <interfaceID>  1, 2, 3, ..., n (integer id of interface to analyze)
+    <algorithm> "cnn3","cnn24", "lstm", "lstmcnn" (algorithm that was used to train model)
+    <length_series> 500, 1000, 5000 (length of time series to pull from orion sdk)
+"""
 def main():
 
 
     if len(sys.argv) != 5:
-        quit()
+        quit("ERROR:\nParameters: <direction> <interfaceID> <algorithm> <length_series>")
 
     inOrOut = sys.argv[1]#options: "in", "out"
     interfaceid = int(sys.argv[2])#option: whatever is in your orion database for interfaceids
     algorithm = sys.argv[3]#options: cnn3, cnn24, lstm, lstmcnn
     length_series = int(sys.argv[4])#option: integer(above 400 in length)
-
 
     ins, insTrains, outs, outsTrains = orionconnection.getInterface(length_series, interfaceid)
 
@@ -48,25 +57,20 @@ def main():
 
     if inOrOut == "out":
         sequence = outs
-        trains = outsTrains
-      
+        trains = outsTrains   
     
     if algorithm == "cnn3":
-        window_size = 3
         model = forecaster.getModelCNNWindow3(sequence)
     elif algorithm == "cnn24":
         window_size = 24
         model = forecaster.getModelCNNWindow24(sequence, window_size, n_features)
     elif algorithm == "lstm":
-        window_size = 3
         model = forecaster.getModelLSTM(sequence)
     elif algorithm == "lstmcnn":
-        window_size = 3
         model = forecaster.getModelLSTM(sequence)
     
     filename, weightfile = createFilenames(inOrOut, interfaceid, algorithm)
     
-
     forecaster.saveModel(model, filename, weightfile)
     
 
