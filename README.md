@@ -26,6 +26,8 @@ Over here a typical command could look like:
 This command will walk you through the process of generating the model and at the end output a score back to you, the closer the score is to zero the better the model is performing. 
 
 The last few lines of output are:
+
+
 Epoch 27/30
 798/798 [==============================] - 0s 30us/step - loss: 0.0071
 Epoch 28/30
