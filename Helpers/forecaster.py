@@ -1,5 +1,6 @@
-import orionconnection
-import rollingwindow
+from Helpers import orionconnection
+from Helpers import forecaster
+from Helpers import rollingwindow
 from keras.models import model_from_json
 from keras.layers import Flatten, LSTM, Dense, Activation
 from keras.layers.convolutional import MaxPooling1D, Conv1D

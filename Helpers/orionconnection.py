@@ -10,7 +10,7 @@ name = os.environ['name']
 password = os.environ['password']
 
 
-swis = orionsdk.SwisClient(server, name, password)
+swis = orionsdk.SwisClient(server, name, "")
 
 verify = False
 if not verify:
