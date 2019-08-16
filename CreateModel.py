@@ -54,6 +54,7 @@ def main():
     trains = insTrains
 
     n_features = 1
+    window_size = 3
 
     if inOrOut == "out":
         sequence = outs
@@ -72,6 +73,11 @@ def main():
     filename, weightfile = createFilenames(inOrOut, interfaceid, algorithm)
     
     forecaster.saveModel(model, filename, weightfile)
+
+    X, y = rollingwindow.split_sequence(trains, window_size)
+    X = X.reshape((X.shape[0], X.shape[1], n_features))
+
+    print(model.evaluate(X, y))
     
 
 
