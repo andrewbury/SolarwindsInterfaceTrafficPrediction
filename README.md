@@ -52,7 +52,8 @@ If we had a typical router that we wanted to know information about we can set a
 So lets make a prediction, the command looks like:
 "python PredictNext.py inOrOut interfaceID algorithm withSmoothing"
 
-all three of inOrOut interfaceID and algorithm variables are the same are before 
+all three of inOrOut interfaceID and algorithm variables are the same as before
+
 withSmoothing: if we are going to feed the values smoothed (AKA have had a log base 10 transform done already)
 
 I would say to always have withSmoothing set to f so that you can just send the scipt the last window_size of values. 
