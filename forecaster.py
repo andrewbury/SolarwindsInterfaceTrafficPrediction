@@ -15,8 +15,6 @@ def getModelCNNWindow3(sequence, window_size=3, n_features=1,epochs=100):
     model.add(Dense(50, activation='relu'))
     model.add(Dense(1))
     model.compile(optimizer='adam', loss='mse')
-
-    model.compile(optimizer='adam', loss='mse')
     X, y = rollingwindow.split_sequence(sequence, window_size)
     X = X.reshape((X.shape[0], X.shape[1], n_features))
     
@@ -74,7 +72,7 @@ def getModelCNNLSTM(sequence, window_size=3, n_features=1, epochs=30):
 
     return model
 
-def getModelLSTM(sequence, window_size=3, n_features=1, epochs=100):
+def getModelLSTM(sequence, window_size=3, n_features=1, epochs=30):
     model = Sequential()
     model.add(LSTM(units=10,activation='tanh', recurrent_activation='hard_sigmoid', use_bias=True, kernel_initializer='glorot_uniform'))
     
