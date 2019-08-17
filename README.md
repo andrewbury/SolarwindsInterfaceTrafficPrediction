@@ -39,10 +39,10 @@ Epoch 29/30
 
 Epoch 30/30
 798/798 [==============================] - 0s 30us/step - loss: 0.0071
-196/196 [==============================] - 0s 148us/step
-0.007097733344844714
 
-Rounding that leads the exact same thing, that will rarely happen as one is a training set and one is a testing set but hey kinda cool that it did. 
+Testing score 0.007097733344844714
+
+Rounding the testing score leads the exact same as the loss on training, that will rarely happen as one is a training set and one is a testing set but hey kinda cool that it did. 
 
 It should be noted that two files were created. 
 Those are used to store the model and the weights associated with the model. 
