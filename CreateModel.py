@@ -36,6 +36,8 @@ Parameters: <direction> "in","out" (Tells what direction on the interface to ana
     <interfaceID>  1, 2, 3, ..., n (integer id of interface to analyze)
     <algorithm> "cnn3","cnn24", "lstm", "lstmcnn" (algorithm that was used to train model)
     <length_series> 500, 1000, 5000 (length of time series to pull from orion sdk)
+
+Summary: Outputs the model score and saves model to weight file and model file
 """
 def main():
 

@@ -5,9 +5,10 @@ from keras.models import model_from_json
 from keras.layers import Flatten, LSTM, Dense, Activation
 from keras.layers.convolutional import MaxPooling1D, Conv1D
 from keras.models import Sequential
+from keras.callbacks import EarlyStopping 
 from numpy import array
 
-def getModelCNNWindow3(sequence, window_size=3, n_features=1,epochs=30):
+def getModelCNNWindow3(sequence, window_size=3, n_features=1,epochs=1000):
     model = Sequential()
     model.add(Conv1D(filters=24, kernel_size=2, activation='relu', input_shape=(window_size, n_features)))
     model.add(MaxPooling1D(pool_size=2))
@@ -19,12 +20,13 @@ def getModelCNNWindow3(sequence, window_size=3, n_features=1,epochs=30):
     X, y = rollingwindow.split_sequence(sequence, window_size)
     X = X.reshape((X.shape[0], X.shape[1], n_features))
     
-    model.fit(X, y, epochs=epochs)
+    es = EarlyStopping(monitor='val_loss', mode='min', verbose=1)
+    model.fit(X, y, epochs=epochs, callbacks=[es])
 
     return model
 
 
-def getModelCNNWindow24(sequence, window_size=int(24), activation='relu', n_features=1, epochs=100 ):
+def getModelCNNWindow24(sequence, window_size=int(24), activation='relu', n_features=1, epochs=1000 ):
     
     kernel_size = [2,2]
     filters = [6,6]
@@ -52,11 +54,12 @@ def getModelCNNWindow24(sequence, window_size=int(24), activation='relu', n_feat
     X, y = rollingwindow.split_sequence(sequence, window_size)
     X = X.reshape((X.shape[0], X.shape[1], n_features))
     
-    model.fit(X, y, epochs=epochs)
+    es = EarlyStopping(monitor='val_loss', mode='min', verbose=1)
+    model.fit(X, y, epochs=epochs, callbacks=[es])
     
     return model
 
-def getModelCNNLSTM(sequence, window_size=3, n_features=1, epochs=30):
+def getModelCNNLSTM(sequence, window_size=3, n_features=1, epochs=300):
     model = Sequential()
     model.add(Conv1D(filters=24, kernel_size=2, activation='relu', input_shape=(window_size, n_features)))
     model.add(MaxPooling1D(pool_size=2))
@@ -68,12 +71,12 @@ def getModelCNNLSTM(sequence, window_size=3, n_features=1, epochs=30):
 
     X, y = rollingwindow.split_sequence(sequence, window_size)
     X = X.reshape((X.shape[0], X.shape[1], n_features))
-    
-    model.fit(X, y, epochs=epochs)
+    es = EarlyStopping(monitor='val_loss', mode='min', verbose=1)
+    model.fit(X, y, epochs=epochs, callbacks=[es])
 
     return model
 
-def getModelLSTM(sequence, window_size=3, n_features=1, epochs=30):
+def getModelLSTM(sequence, window_size=3, n_features=1, epochs=1000):
     model = Sequential()
     model.add(LSTM(units=10,activation='tanh', recurrent_activation='hard_sigmoid', use_bias=True, kernel_initializer='glorot_uniform'))
     
@@ -83,8 +86,8 @@ def getModelLSTM(sequence, window_size=3, n_features=1, epochs=30):
 
     X, y = rollingwindow.split_sequence(sequence, window_size)
     X = X.reshape((X.shape[0], X.shape[1], n_features))
-    
-    model.fit(X, y, epochs=epochs)
+    es = EarlyStopping(monitor='val_loss', mode='min', verbose=1)
+    model.fit(X, y, epochs=epochs, callbacks=[es])
 
     return model
 
