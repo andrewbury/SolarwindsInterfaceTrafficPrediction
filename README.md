@@ -16,8 +16,11 @@ then run the command :
 "python CreatModel.py inOrOut interfaceID algorithm numberInSeries"
 where the variables
 inOrOut: To monitor the  interface's traffic BPS going in or out 
+
 interfaceID: what the ID is for that interface (same as in SWIS)
+
 algorithm: the algorithm to try and map the time series only 4 are available ("cnn3","cnn24", "lstm", "lstmcnn")
+
 numberInSeries: the length of the time series to pull from SWIS (should be longer than 400)
 
 Over here a typical command could look like: 
@@ -65,5 +68,8 @@ Alright, happy forecasting :)
 
 
 Summary:
+    
     Run the CreateModel.py script until you find a model that outputs a low test score, for starters I would run CreateModel.py with each of the 4 and see which has an output closest to zero. Once you find a model that you like remember those parameters so that you only have to re-train the model (AKA run CreateModel.py) every day, week, or month. 
-    Run the PredictNext.py script everytime you want to predict what the next N values are for your interface traffic. The larger the value of N the less accurate the model is because it cant use the most recent true values of interface traffic. I would run the PredictNext.py script either every minute, 30 minutes, hour, 6-hours, or day with the window_size set to a low value. The frequency to run this script, which has correlation to window_size, depends how accurate you want your predictions and even more importantly what interval you have polling set to run in orion for interface traffic (AKA every minute, 10 minutes, hour, 6 hours, day ...)
+    
+    Run the PredictNext.py script everytime you want to predict what the next N values are for your interface traffic. 
+    The larger the value of N the less accurate the model is because it cant use the most recent true values of interface traffic. I would run the PredictNext.py script either every minute, 30 minutes, hour, 6-hours, or day with the window_size set to a low value. The frequency to run this script, which has correlation to window_size, depends how accurate you want your predictions and even more importantly what interval you have polling set to run in orion for interface traffic (AKA every minute, 10 minutes, hour, 6 hours, day ...)
