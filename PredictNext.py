@@ -9,7 +9,7 @@ from CreateModel import createFilenames
 Parameters: <direction> "in","out" (Tells what direction on the interface to analyze)      
     <interfaceID>  1, 2, 3, ..., n (integer id of interface to analyze)
     <algorithm> "cnn3","cnn24", "lstm", "lstmcnn" (algorithm that was used to train model)
-    <window_size> 1, 6, 24 (integer of how many values you wish to forecast, gets less accurate the larger you go)
+    <window_size> 1, 2, 3(integer of how many values you wish to forecast, gets less accurate the larger you go)
 
 Input: Takes in as input from stdin a double array of size window_size(see model creation)
 
@@ -50,9 +50,9 @@ def main():
     itr = 0
 
     while itr < window_size:
-        predictions.append(forecaster.predict_next(model, last_window_array, lastNum)[0][0])
+        predictions.append(np.exp(forecaster.predict_next(model, last_window_array, lastNum)[0][0]))
         last_window_array = np.delete(last_window_array, 0)
-        last_window_array = np.append(last_window_array, predictions[itr])
+        last_window_array = np.append(last_window_array, np.log(predictions[itr]))
         itr += 1
     
     print(predictions)
