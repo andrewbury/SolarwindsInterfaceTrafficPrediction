@@ -46,29 +46,24 @@ Rounding the testing score leads the exact same as the loss on training, that wi
 
 It should be noted that two files were created. 
 Those are used to store the model and the weights associated with the model. 
-They have a date associated with them so you can know if the data is somewhat old. I woud say fresh data should be monthly updated. 
+They have a date associated with them so you can know if the data is old. Keep in mind there generally isn't a need to re-create the model until it starts to make bad predictions. If you dont want to worry about continually checking what the error is then you could always just take the naive appraoch and recreate the model maybe every day, week, or month. 
 
 Play around with the interface ids and each algorithm seeing which one works(AKA what has the best score) for which type of interface(some interfaces are on the edge of networks and have bursty behavior whereas some are in the center of a network and have somewhat more consistant flow of packets)
 
 If we had a typical router that we wanted to know information about we can set a script to maybe make calls to see what the next n guesses would be. (the larger the value of n the more imprecise the values will get)
 
 So lets make a prediction, the command looks like:
-"python PredictNext.py inOrOut interfaceID algorithm withSmoothing"
+"python PredictNext.py inOrOut interfaceID algorithm window_size"
 
 all three of inOrOut interfaceID and algorithm variables are the same as before
 
-withSmoothing: if we are going to feed the values smoothed (AKA have had a log base 10 transform done already)
+window_size: the number of predictions to forecast into the future, the larger the value the more inaccurate the preditions become 
 
-I would say to always have withSmoothing set to f so that you can just send the scipt the last window_size of values. 
 
-IMPORTANT: once you launch the PredictNext.py script you will be prompted to enter in a window_size of the last values so the model can predict the next value. The model will only predict the next value associated with the previous window_size of time units. So you must enter in the correct last window_size of values from your orion database. If I was using cnn3 which uses a window_size = 3, i would enter into stdin the value 3 units behind first, 2 units behind second, and 1 unit behind third. Send the values seperated by a space. The script will then output what its next guess is given the last window size. If you want to have the script keep guessing you just shift everything over. Input to stdin would look like value 2 units behind first, value 1 unit behind second, and first predict value third. The model will then give its second predict value, this can continue but it gets less accurate as you continue. 
-
-Algorithm window_size 
-
-cnn3 lstm and lstmcnn use window_size = 3
-
-cnn24 has window_size = 24
+Alright, happy forecasting :)
 
 
 
-Alright, happy predicting 
+Summary:
+    Run the CreateModel.py script until you find a model that outputs a low test score, for starters I would run CreateModel.py with each of the 4 and see which has an output closest to zero. Once you find a model that you like remember those parameters so that you only have to re-train the model (AKA run CreateModel.py) every day, week, or month. 
+    Run the PredictNext.py script everytime you want to predict what the next N values are for your interface traffic. The larger the value of N the less accurate the model is because it cant use the most recent true values of interface traffic. I would run the PredictNext.py script either every minute, 30 minutes, hour, 6-hours, or day with the window_size set to a low value. The frequency to run this script, which has correlation to window_size, depends how accurate you want your predictions and even more importantly what interval you have polling set to run in orion for interface traffic (AKA every minute, 10 minutes, hour, 6 hours, day ...)

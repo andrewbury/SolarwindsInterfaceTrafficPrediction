@@ -22,9 +22,10 @@ def getInterface(series_length, interface_id):
     s += str(series_length)
     s += " it.InterfaceID, it.DateTime, it.InAveragebps, it.OutAveragebps FROM Orion.NPM.InterfaceTraffic it where InterfaceID = "
     s += str(interface_id)
+    s += " order by it.DateTime"
+    
     results = swis.query(s)
 
-    times = list()
     ins = list()
     insTrains = list()
     outs = list()
@@ -36,7 +37,6 @@ def getInterface(series_length, interface_id):
 
     for row in results['results']:
         
-        times.append(row['DateTime'])
         if itr >= series_length:
             break
         if itr > percentile:
@@ -49,3 +49,22 @@ def getInterface(series_length, interface_id):
         itr += 1
 
     return ins, insTrains, outs, outsTrains
+
+
+def getLatest(series_length, interface_id):
+    s = "Select TOP "
+    s += str(series_length)
+    s += " it.InterfaceID, it.DateTime, it.InAveragebps, it.OutAveragebps FROM Orion.NPM.InterfaceTraffic it where InterfaceID = "
+    s += str(interface_id)
+    s += " order by it.DateTime"
+    
+    results = swis.query(s)
+
+    ins = list()
+    outs = list()
+
+    for row in results['results']:
+        ins.append(numpy.log(row['InAveragebps']))
+        outs.append(numpy.log(row['OutAveragebps']))
+        
+    return ins, outs
