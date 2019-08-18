@@ -6,18 +6,6 @@ import numpy as np
 from CreateModel import createFilenames
 
 """
-When taking in values from stdin you must cast to a float before doing math arthmetic 
-"""
-def getSmoothedInput():
-    window = [i for i in input().split()]
-    smoothed_window = list()
-    for row in window:
-        smoothed_window.append(float(row))
-    return np.log(smoothed_window)
-
-
-
-"""
 Parameters: <direction> "in","out" (Tells what direction on the interface to analyze)      
     <interfaceID>  1, 2, 3, ..., n (integer id of interface to analyze)
     <algorithm> "cnn3","cnn24", "lstm", "lstmcnn" (algorithm that was used to train model)
