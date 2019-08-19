@@ -1,8 +1,8 @@
 Solarwinds Interface Traffic Forecaster 
 
-Concept: This is way to predict what the next N number of values are for a certain interface in your orion database. As with machine learning the results vary so all options should be tested for accuracy. After a model has been ran it outputs a value, the closer that value is to zero the better the model is performing.
+Concept: This is way to predict what the next N number of values are for a certain interface in your orion database. As with machine learning the results vary so all options should be tested for accuracy per interface. After a model has been ran it outputs a value, the closer that value is to zero the better the model is performing.
 
-Requirements: Python3.6, Keras, Numpy, orionsdk, pandas
+Requirements: Python version 3.6, Keras, Numpy, orionsdk, pandas
 System Variables must be set to establish connection with orion 
 server = os.environ['server'],
 name = os.environ['name'],
@@ -10,18 +10,18 @@ password = os.environ['password']
 
 So lets walk through what a typical forecast can look like
 
-First downloa and change into the project, then install the requirements and set your system variables 
+First download and change into the project, then install the requirements and set your system variables
 
-The first of the two commands that need to be ran are :
+The first of the two commands that need to be ran is:
 "python CreatModel.py inOrOut interfaceID algorithm numberInSeries"
 where the variables
-inOrOut: To monitor the  interface's traffic BPS going in or out 
+inOrOut: To monitor the  interface's traffic BPS going in or out (options = "in" "out")
 
 interfaceID: what the ID is for that interface (same as in SWIS)
 
 algorithm: the algorithm to try and map the time series only 4 are available ("cnn3","cnn24", "lstm", "lstmcnn")
 
-numberInSeries: the length of the time series to pull from SWIS (should be longer than 400)
+numberInSeries: the length of the time series to pull from SWIS (should be shorter than 100)
 
 Over here a typical command could look like: 
 "C:\dev\Python\Forecaster>python CreateModel.py in 6924 cnn3 1000"
