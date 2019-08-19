@@ -11,7 +11,6 @@ Parameters: <direction> "in","out" (Tells what direction on the interface to ana
     <algorithm> "cnn3","cnn24", "lstm", "lstmcnn" (algorithm that was used to train model)
     <window_size> 1, 2, 3(integer of how many values you wish to forecast, gets less accurate the larger you go)
 
-Input: Takes in as input from stdin a double array of size window_size(see model creation)
 
 Output: Print the next forecasted value given the previous window_size
 
