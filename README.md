@@ -45,15 +45,15 @@ Epoch 30/30
 
 0.007097733344844714
 
-Rounding the last number (the testing score) leads to the exact same as the loss on training loss, that will rarely happen as one is a training set and one is a testing set but hey kinda cool that it happened. 
+Rounding the last number (the testing score) leads to the exact same as the loss on training, that will rarely happen as one is a training set and one is a testing set but hey kinda cool that it did. 
 
 It should be noted that two files were created. 
 Those are used to store the model and the weights associated with the model. 
-The files names they have a date tied to them so you can know if the data is old. Keep in mind there generally isn't a need to re-create the model until it starts to make bad predictions. If you dont want to worry about continually checking when the error has become a problem then you could always just take the naive appraoch and recreate the model maybe every day, week, or month. 
+The files have a date in their name so you can know if the data is old. Keep in mind there generally isn't a need to re-create the model until it starts to make bad predictions. If you dont want to worry about when the error for predictions has become a problem then you could always just take the naive appraoch and recreate the model maybe every day, week, or month. 
 
 Play around with the interface ids and each algorithm seeing which one works(AKA what has the best score) for which type of interface(some interfaces are on the edge of networks and have bursty behavior whereas some are in the center of a network and have somewhat more consistant flow of packets)
 
-So now that we have a trained model we need to apply the model to some real world data.
+So now that we have a trained model we need to apply it to some real world data to forecast some values. 
 
 So lets make a prediction, the command looks like:
 "python PredictNext.py inOrOut interfaceID algorithm window_size"
@@ -63,7 +63,7 @@ where all three of the variables inOrOut, interfaceID and algorithm are the same
 window_size: the number of predictions to forecast into the future, the larger the value the more inaccurate the preditions become 
 
 
-This command will output to you the window_size number of forecasts. I would not set too big of a value for window_size as it can tend to get inaccurate after a bit. 
+This command will output to you the window_size number of forecasts, starting with the most recent value first. I would not set too big of a value for window_size as it can tend to get inaccurate after a bit. 
 
 Alright, happy forecasting :)
 
