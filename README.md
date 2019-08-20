@@ -17,6 +17,7 @@ First download and change into the project, then install the requirements and se
 The first of the two commands that need to be ran is:
 "python CreateModel.py inOrOut interfaceID algorithm numberInSeries"
 where the variables
+
 inOrOut: To monitor the  interface's traffic BPS going in or out (options = "in" "out")
 
 interfaceID: what the ID is for that interface (same as in SWIS)
