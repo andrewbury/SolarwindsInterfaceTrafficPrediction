@@ -63,7 +63,7 @@ So lets make a prediction, the command looks like:
 
 where all three of the variables inOrOut, interfaceID and algorithm are the same as before
 
-window_size: the number of predictions to forecast into the future, the larger the value the more inaccurate the preditions become 
+window_size: the number of predictions to forecast into the future, the larger the value the more inaccurate the preditions become, it might not be a bad idea to just stick to 1
 
 
 This command will output to you the window_size number of forecasts, starting with the most recent value first. I would not set too big of a value for window_size as it can tend to get inaccurate after a bit. 
