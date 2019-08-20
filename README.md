@@ -2,7 +2,7 @@ Solarwinds Interface Traffic Forecaster
 
 Concept: This is way to predict what the next N number of values are for a certain interface in your orion database. As with machine learning the results vary so all options should be tested for accuracy per interface. After a model has been ran it outputs a value, the closer that value is to zero the better the model is performing.
 
-Requirements: Python version 3.6(64bit), tensorflow, Keras, Numpy, orionsdk, pandas
+Requirements: Python version 3.6(64bit), tensorflow, Keras, orionsdk, pandas
 
 System Variables must be set to establish connection with orion
 
