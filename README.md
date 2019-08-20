@@ -15,7 +15,7 @@ So lets walk through what a typical forecast can look like
 First download and change into the project, then install the requirements and set your system variables
 
 The first of the two commands that need to be ran is:
-"python CreatModel.py inOrOut interfaceID algorithm numberInSeries"
+"python CreateModel.py inOrOut interfaceID algorithm numberInSeries"
 where the variables
 inOrOut: To monitor the  interface's traffic BPS going in or out (options = "in" "out")
 
