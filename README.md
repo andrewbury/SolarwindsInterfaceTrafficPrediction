@@ -2,7 +2,7 @@ Solarwinds Interface Traffic Forecaster
 
 Concept: This is way to predict what the next N number of values are for a certain interface in your orion database. As with machine learning the results vary so all options should be tested for accuracy per interface. After a model has been ran it outputs a value, the closer that value is to zero the better the model is performing.
 
-Requirements: Python version 3.6(64bit), Keras, Numpy, orionsdk, pandas
+Requirements: Python version 3.6(64bit), tensorflow, Keras, Numpy, orionsdk, pandas
 
 System Variables must be set to establish connection with orion
 
@@ -23,7 +23,7 @@ interfaceID: what the ID is for that interface (same as in SWIS)
 
 algorithm: the algorithm to try and map the time series only 4 are available ("cnn3","cnn24", "lstm", "lstmcnn")
 
-numberInSeries: the length of the time series to pull from SWIS (should be longer than 100)
+numberInSeries: the length of the time series to pull from SWIS (in general should have over 50, for cnn24 need more like over 100)
 
 Over here a typical command could look like: 
 "C:\dev\Python\Forecaster>python CreateModel.py in 6924 cnn3 1000"
