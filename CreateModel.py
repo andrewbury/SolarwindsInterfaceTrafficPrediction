@@ -35,7 +35,11 @@ def createFilenames(inOrOut, interfaceid, algorithm):
 Parameters: <direction> "in","out" (Tells what direction on the interface to analyze)      
     <interfaceID>  1, 2, 3, ..., n (integer id of interface to analyze)
     <algorithm> "cnn3","cnn24", "lstm", "lstmcnn" (algorithm that was used to train model)
-    <length_series> 500, 1000, 5000 (length of time series to pull from orion sdk)
+    <length_series> 50, 100, 1000 (length of time series to pull from orion sdk)
+    
+    Starting numbers = for cnn3 or cnnlstm length_series can realy be anything longer than maybe 50/60 
+                       for lstm length_series shouldnt be greater than 100
+                       for cnn24 want to have larger values like 1000
 
 Summary: Outputs the model score and saves model to weight file and model file
 """
