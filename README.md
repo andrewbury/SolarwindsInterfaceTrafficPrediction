@@ -24,7 +24,7 @@ interfaceID: what the ID is for that interface (same as in SWIS)
 
 algorithm: the algorithm to try and map the time series only 4 are available ("cnn3","cnn24", "lstm", "lstmcnn")
 
-numberInSeries: the length of the time series to pull from SWIS (in general should have over 50, for cnn24 need more like over 100)
+numberInSeries: the length of the time series to pull from SWIS (in general should have over 50, for cnn24 need more like well over 100), *important* dont have this value be larger than the total number of rows in your orion database for an interface's traffic
 
 Over here a typical command could look like: 
 "C:\dev\Python\Forecaster>python CreateModel.py in 6924 cnn3 1000"
